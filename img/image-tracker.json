@@ -1,0 +1,28 @@
+{
+  "required_images": [
+    {
+      "filename": "black-tshirt.jpg",
+      "status": "pending",
+      "size": "800x800",
+      "format": "jpg"
+    },
+    {
+      "filename": "khmer-pattern.jpg",
+      "status": "pending",
+      "size": "800x800",
+      "format": "jpg"
+    },
+    {
+      "filename": "angkor-design.jpg",
+      "status": "pending",
+      "size": "800x800",
+      "format": "jpg"
+    },
+    {
+      "filename": "traditional-pattern.jpg",
+      "status": "pending",
+      "size": "800x800",
+      "format": "jpg"
+    }
+  ]
+}

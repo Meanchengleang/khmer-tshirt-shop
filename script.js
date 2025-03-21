@@ -4,7 +4,7 @@ const products = [
         id: 1,
         name: "Classic Black T-Shirt",
         price: 29.99,
-        image: "img/black-tshirt.jpg",
+        image: "./img/black-tshirt.jpg",  // Updated path
         category: "streetwear",
         stock: 15,
         description: "Classic comfortable black t-shirt"

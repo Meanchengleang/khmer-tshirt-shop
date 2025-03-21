@@ -16,6 +16,9 @@ build/
 # Environment variables
 .env
 
-# Track all images
+# Include all images
 !img/
-!img/*.*
+!img/**/*
+!img/**/*.jpg
+!img/**/*.png
+!img/**/*.jpeg

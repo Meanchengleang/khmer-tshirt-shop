@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Classic Black T-Shirt",
+      "price": 29.99,
+      "image": "img/products/black-tshirt.jpg",
+      "category": "streetwear",
+      "stock": 15,
+      "description": "Classic comfortable black t-shirt"
+    },
+    {
+      "id": 2,
+      "name": "Khmer Pattern T-Shirt",
+      "price": 34.99,
+      "image": "img/products/khmer-pattern.jpg",
+      "category": "artistic",
+      "stock": 10,
+      "description": "Traditional Khmer pattern design"
+    }
+  ]
+}

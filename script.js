@@ -4,7 +4,7 @@ const products = [
         id: 1,
         name: "Classic Black T-Shirt",
         price: 29.99,
-        image: "./img/black-tshirt.jpg",  // Updated relative path
+        image: "products/black-tshirt.jpg",  // Updated path
         category: "streetwear",
         stock: 15,
         description: "Classic comfortable black t-shirt"
@@ -38,19 +38,31 @@ const products = [
     }
 ];
 
+// Add function to check if images exist
+function checkImageExists(imageSrc) {
+    const img = new Image();
+    img.src = imageSrc;
+    img.onerror = () => {
+        console.error(`Image not found: ${imageSrc}`);
+        img.src = 'products/placeholder.jpg';
+    };
+    return img;
+}
+
 // Function to display products
 function displayProducts(productsToShow = products) {
     const productGrid = document.getElementById('product-grid');
     productGrid.innerHTML = '';
 
     productsToShow.forEach(product => {
+        const img = checkImageExists(product.image);
         const productCard = `
             <div class="product-card">
                 <span class="product-type">${product.category}</span>
                 <span class="product-badge ${product.stock > 10 ? 'in-stock' : product.stock > 0 ? 'low-stock' : 'out-stock'}">
                     ${product.stock > 10 ? 'In Stock' : product.stock > 0 ? 'Low Stock' : 'Out of Stock'}
                 </span>
-                <img src="${product.image}" alt="${product.name}">
+                <img src="${img.src}" alt="${product.name}">
                 <h3>${product.name}</h3>
                 <p>$${product.price.toFixed(2)}</p>
                 <div class="product-actions">

@@ -16,7 +16,6 @@ build/
 # Environment variables
 .env
 
-# Image files
+# Track all images and image directory
 !img/
-!img/**
-*.psd
+!img/**/*

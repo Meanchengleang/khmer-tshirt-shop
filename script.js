@@ -1,52 +1,46 @@
-// Sample product data
 const products = [
     {
         id: 1,
         name: "Classic Black T-Shirt",
         price: 29.99,
-        image: "products/black-tshirt.jpg",  // Updated path
+        image: "https://raw.githubusercontent.com/Meanchengleang/khmer-tshirt-shop/main/img/black-tshirt.jpg",
         category: "streetwear",
         stock: 15,
-        description: "Classic comfortable black t-shirt"
+        description: "Premium black t-shirt with comfortable fit"
     },
     {
         id: 2,
         name: "Khmer Pattern T-Shirt",
         price: 34.99,
-        image: "./img/khmer-pattern.jpg",  // Updated relative path
+        image: "https://raw.githubusercontent.com/Meanchengleang/khmer-tshirt-shop/main/img/khmer-pattern.jpg",
         category: "artistic",
         stock: 10,
-        description: "Traditional Khmer pattern design"
+        description: "Beautiful Khmer pattern design t-shirt"
     },
     {
         id: 3,
         name: "Angkor Design T-Shirt",
         price: 39.99,
-        image: "img/angkor-design.jpg",
+        image: "https://raw.githubusercontent.com/Meanchengleang/khmer-tshirt-shop/main/img/angkor-design.jpg",
         category: "artistic",
         stock: 8,
-        description: "Elegant Angkor Wat inspired design"
+        description: "Elegant Angkor Wat inspired design t-shirt"
     },
     {
         id: 4,
-        name: "Traditional Pattern",
+        name: "Traditional Pattern T-Shirt",
         price: 32.99,
-        image: "img/traditional-pattern.jpg",
+        image: "https://raw.githubusercontent.com/Meanchengleang/khmer-tshirt-shop/main/img/traditional-pattern.jpg",
         category: "graphic",
         stock: 12,
-        description: "Classic Khmer traditional pattern"
+        description: "Classic Khmer traditional pattern t-shirt"
     }
 ];
 
-// Add function to check if images exist
-function checkImageExists(imageSrc) {
-    const img = new Image();
-    img.src = imageSrc;
-    img.onerror = () => {
-        console.error(`Image not found: ${imageSrc}`);
-        img.src = 'products/placeholder.jpg';
-    };
-    return img;
+// Function to handle image errors
+function handleImageError(img) {
+    img.onerror = null; // Prevent infinite loop
+    img.src = 'https://via.placeholder.com/800x800.jpg?text=Product+Image';
 }
 
 // Function to display products
@@ -55,14 +49,13 @@ function displayProducts(productsToShow = products) {
     productGrid.innerHTML = '';
 
     productsToShow.forEach(product => {
-        const img = checkImageExists(product.image);
         const productCard = `
             <div class="product-card">
                 <span class="product-type">${product.category}</span>
                 <span class="product-badge ${product.stock > 10 ? 'in-stock' : product.stock > 0 ? 'low-stock' : 'out-stock'}">
                     ${product.stock > 10 ? 'In Stock' : product.stock > 0 ? 'Low Stock' : 'Out of Stock'}
                 </span>
-                <img src="${img.src}" alt="${product.name}">
+                <img src="${product.image}" alt="${product.name}" onerror="handleImageError(this)">
                 <h3>${product.name}</h3>
                 <p>$${product.price.toFixed(2)}</p>
                 <div class="product-actions">

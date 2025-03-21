@@ -1,12 +1,17 @@
-# System files
+# System Files
 .DS_Store
 Thumbs.db
 
-# Editor directories and files
-.idea/
+# IDE Files
 .vscode/
-*.swp
-*.swo
+.idea/
 
 # Dependencies
 node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Environment variables
+.env

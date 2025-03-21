@@ -16,10 +16,6 @@ build/
 # Environment variables
 .env
 
-# Track images and empty directories
+# Make sure to include all images
 !img/
-!img/**/*.jpg
-!img/**/*.jpeg
-!img/**/*.png
-!img/**/*.gif
-!img/**/.gitkeep
+!img/**/*

@@ -1,51 +1,64 @@
-const products = [
-    {
-        id: 1,
-        name: "Classic Black T-Shirt",
-        price: 29.99,
-        image: "https://raw.githubusercontent.com/Meanchengleang/khmer-tshirt-shop/main/img/black-tshirt.jpg",
-        category: "streetwear",
-        stock: 15,
-        description: "Premium black t-shirt with comfortable fit"
-    },
-    {
-        id: 2,
-        name: "Khmer Pattern T-Shirt",
-        price: 34.99,
-        image: "https://raw.githubusercontent.com/Meanchengleang/khmer-tshirt-shop/main/img/khmer-pattern.jpg",
-        category: "artistic",
-        stock: 10,
-        description: "Beautiful Khmer pattern design t-shirt"
-    },
-    {
-        id: 3,
-        name: "Angkor Design T-Shirt",
-        price: 39.99,
-        image: "https://raw.githubusercontent.com/Meanchengleang/khmer-tshirt-shop/main/img/angkor-design.jpg",
-        category: "artistic",
-        stock: 8,
-        description: "Elegant Angkor Wat inspired design t-shirt"
-    },
-    {
-        id: 4,
-        name: "Traditional Pattern T-Shirt",
-        price: 32.99,
-        image: "https://raw.githubusercontent.com/Meanchengleang/khmer-tshirt-shop/main/img/traditional-pattern.jpg",
-        category: "graphic",
-        stock: 12,
-        description: "Classic Khmer traditional pattern t-shirt"
-    }
-];
+const fs = require('fs');
 
-// Function to handle image errors
+// Function to load all images from directory
+function loadLocalImages() {
+    const imgDir = './img';
+    
+    try {
+        // Read all files from img directory
+        const files = fs.readdirSync(imgDir)
+            .filter(file => file.match(/\.(jpg|jpeg|png|gif)$/i));
+        
+        // Create products from images
+        const products = files.map((file, index) => ({
+            id: index + 1,
+            name: file.split('.')[0]
+                .split('-')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' '),
+            price: 29.99 + (Math.random() * 10).toFixed(2), // Random price between 29.99 and 39.99
+            image: `img/${file}`,
+            category: getCategoryFromFilename(file),
+            stock: Math.floor(Math.random() * 20) + 5, // Random stock between 5 and 25
+            description: `Beautiful ${file.split('.')[0].replace(/-/g, ' ')} design t-shirt`
+        }));
+
+        return products;
+    } catch (error) {
+        console.error('Error loading images:', error);
+        return [];
+    }
+}
+
+// Helper function to determine category from filename
+function getCategoryFromFilename(filename) {
+    if (filename.includes('black')) return 'streetwear';
+    if (filename.includes('khmer') || filename.includes('angkor')) return 'artistic';
+    return 'graphic';
+}
+
+// Initialize products
+let products = [];
+
+// Function to handle image errors with retry
 function handleImageError(img) {
-    img.onerror = null; // Prevent infinite loop
-    img.src = 'https://via.placeholder.com/800x800.jpg?text=Product+Image';
+    const retryCount = parseInt(img.dataset.retryCount || 0);
+    if (retryCount < 3) { // Try 3 times
+        img.dataset.retryCount = retryCount + 1;
+        setTimeout(() => {
+            img.src = img.src; // Retry loading
+        }, 1000); // Wait 1 second before retry
+    } else {
+        img.onerror = null; // Stop retrying
+        img.src = 'https://via.placeholder.com/800x800.jpg?text=Product+Image';
+    }
 }
 
 // Function to display products
 function displayProducts(productsToShow = products) {
     const productGrid = document.getElementById('product-grid');
+    if (!productGrid) return;
+    
     productGrid.innerHTML = '';
 
     productsToShow.forEach(product => {
@@ -57,7 +70,7 @@ function displayProducts(productsToShow = products) {
                 </span>
                 <img src="${product.image}" alt="${product.name}" onerror="handleImageError(this)">
                 <h3>${product.name}</h3>
-                <p>$${product.price.toFixed(2)}</p>
+                <p>$${product.price}</p>
                 <div class="product-actions">
                     <button class="view-details-btn" onclick="showProductDetails(${product.id})">
                         <i class="fas fa-eye"></i> View Details
@@ -72,9 +85,15 @@ function displayProducts(productsToShow = products) {
     });
 }
 
-// Initialize the page
+// Initialize the page with dynamic image loading
 document.addEventListener('DOMContentLoaded', () => {
+    // Load all products from images
+    products = loadLocalImages();
+    
+    // Display products
     displayProducts();
+    
+    // Setup event listeners
     setupEventListeners();
 });
 

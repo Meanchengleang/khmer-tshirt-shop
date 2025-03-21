@@ -4,7 +4,7 @@ const products = [
         id: 1,
         name: "Classic Black T-Shirt",
         price: 29.99,
-        image: "images/black-tshirt.jpg",
+        image: "img/black-tshirt.jpg",
         category: "streetwear",
         stock: 15,
         description: "Classic comfortable black t-shirt"
@@ -13,12 +13,29 @@ const products = [
         id: 2,
         name: "Khmer Pattern T-Shirt",
         price: 34.99,
-        image: "images/khmer-pattern.jpg",
+        image: "img/khmer-pattern.jpg",
         category: "artistic",
         stock: 10,
         description: "Traditional Khmer pattern design"
     },
-    // Add more products here
+    {
+        id: 3,
+        name: "Angkor Design T-Shirt",
+        price: 39.99,
+        image: "img/angkor-design.jpg",
+        category: "artistic",
+        stock: 8,
+        description: "Elegant Angkor Wat inspired design"
+    },
+    {
+        id: 4,
+        name: "Traditional Pattern",
+        price: 32.99,
+        image: "img/traditional-pattern.jpg",
+        category: "graphic",
+        stock: 12,
+        description: "Classic Khmer traditional pattern"
+    }
 ];
 
 // Function to display products

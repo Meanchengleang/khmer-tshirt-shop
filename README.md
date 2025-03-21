@@ -50,6 +50,31 @@ khmer-tshirt-shop/
 └── README.md         # Documentation
 ```
 
+## Images
+Product images should be placed in the `img/` directory with the following requirements:
+- Format: JPG or PNG
+- Size: 800x800 pixels recommended
+- Max file size: 500KB
+- Naming convention: lowercase with hyphens (e.g., black-tshirt.jpg)
+
+Current images required:
+- img/black-tshirt.jpg
+- img/khmer-pattern.jpg
+
+## Image Requirements
+
+All product images should be stored in the `img/` directory with the following specifications:
+- Format: JPG or PNG
+- Resolution: 800x800 pixels (recommended)
+- Max file size: 500KB
+- File naming: lowercase with hyphens (e.g., black-tshirt.jpg)
+
+### Required Images
+- black-tshirt.jpg
+- khmer-pattern.jpg
+- angkor-design.jpg
+- traditional-pattern.jpg
+
 ## Contributing
 
 1. Fork the repository

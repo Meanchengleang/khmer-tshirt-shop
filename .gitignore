@@ -15,3 +15,8 @@ build/
 
 # Environment variables
 .env
+
+# Image files
+!img/
+!img/**
+*.psd

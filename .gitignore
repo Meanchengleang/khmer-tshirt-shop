@@ -16,10 +16,10 @@ build/
 # Environment variables
 .env
 
-# Track all images
-!/**/*.jpg
-!/**/*.jpeg
-!/**/*.png
-!/**/*.gif
+# Track images and empty directories
 !img/
-!img/**/*
+!img/**/*.jpg
+!img/**/*.jpeg
+!img/**/*.png
+!img/**/*.gif
+!img/**/.gitkeep

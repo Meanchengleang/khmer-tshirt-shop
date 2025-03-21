@@ -4,7 +4,7 @@ const products = [
         id: 1,
         name: "Classic Black T-Shirt",
         price: 29.99,
-        image: "./img/black-tshirt.jpg",  // Updated path
+        image: "./img/black-tshirt.jpg",  // Updated relative path
         category: "streetwear",
         stock: 15,
         description: "Classic comfortable black t-shirt"
@@ -13,7 +13,7 @@ const products = [
         id: 2,
         name: "Khmer Pattern T-Shirt",
         price: 34.99,
-        image: "img/khmer-pattern.jpg",
+        image: "./img/khmer-pattern.jpg",  // Updated relative path
         category: "artistic",
         stock: 10,
         description: "Traditional Khmer pattern design"
